@@ -1,0 +1,19 @@
+{
+  "name": "jg-team-profile-generator",
+  "version": "1.0.0",
+  "description": "Display teams informatin to gain access to thier email and github",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sainty93/jg-team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sainty93/jg-team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/Sainty93/jg-team-profile-generator#readme"
+}
