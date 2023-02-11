@@ -84,40 +84,19 @@ const createManager = () => {
         });
     };
 
+    const writeFile = (data) => {
+        fs.writeFile('./dist/sampleIndex.html', data, (error) => {
+            if (error) {
+                console.log(error);
+                return;
+            } else {
+                console.log('Your team profiles have been made.');
+            }
+        });
+    };
+    createManager();
+
     //still need to make corrections//
 
     
-                internInput.intern_school
-               );
-               teamMembers.push(intern);
-     });
-    } else if (response.team_role === 'I do not want to add team member.') {
-            console.log('The new team has been created');
-            return;
-    }
-    });
-};
-const createManager = async ()  => {
-    return await
-    inquirer.prompt(questions.managerQuestions).then((input) => {
-        const manager = new Manager (
-        isNumberObject.manager_name,
-        input.manager_id,
-        input.manager_email,
-        input.manager_officeNUm
-    );
-    teamMembers.push(manager);
-
-    createTeam();
-    });
-};
-
-function init() {
-    console.log(`Welcome to Team Profile Generator, lets create your team: `);
-    createManager();
-}
-
-init();
-
-
-
+               
