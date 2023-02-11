@@ -6,8 +6,8 @@ const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const questions = require('./lib/questions');
-
+const questions = require('./lib/questions.js');
+const generateHTML = require('./dist/generateHTML.js');
 inquirer.createPromptModule(questions);
 
 const generateHTML = require('./dist/generateHTML.js');
