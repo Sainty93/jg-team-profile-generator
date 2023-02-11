@@ -14,37 +14,79 @@ const createManager = () => {
    // .prompt({
 
 //const createTeam = async () => {
-    return await inquirer
-    .prompt([
-        {
-            type: 'list',
-            name: 'team_role',
-            message: 'Please select the type of team member you would liketo join.',
-            choices: ['Engineer', 'Intern', 'I do not want to add a team member.'],
-        },
-    ])
-    .then(asyn, function (response) {
-        if (response.team_role === 'Engineer') {
-            return await inquirer
-            .prompt(questions.enginnerQuestions)
-            .then (function (engineerInput){
-                const enginner = new Enginner(
-                    enginnerInput.enginner_name,
-                    enginnerInput.enginner_id,
-                    enginnerInput.enginner_email,
-                    enginnerInput.enginner_github
-                );
-                teamMembers.push(engineer);
-                console.log(enginner);
-            });
-    }  else if (response.team_role === 'Intern') {
-            return await inquirer
-            .prompt(questions.internQuestions)
-            .then(function (internInput) {
-               const intern =new Intern(
-                internInput.intern_name,
-                internInput.intern_id,
-                internInput.intern_email,
+   return inquirer.prompt(questions.managerQuestions.then((managerInput) => {
+        const manager = new Manager(
+            managerInput.manager_name,
+            managerInput.manager_id,
+            managerInput.manager_email,
+            managerInput.manager_officeNumber
+        );
+        teamMembers.push(manager);
+        console.log(manager);
+
+        createTeam();
+
+        });
+};
+    const createTeam =() => {
+        return inquirer
+        .prompt([
+            {
+                type: 'list',
+                name: 'team_role',
+                message:
+                'Please select the type of team member you would like to create: ',
+                choices: ['Enginner', 'Intern', 'I do not want to add a team member.'],
+            },
+        ])
+        .then(function (data) {
+            if(data.team_role === 'Engineer') {
+                return inquirer
+                .prompt(questions.engineerQuestions)
+                .then(function (engineerInput) {
+                    const engineer = new Engineer(
+                        engineerInput.engineer_name,
+                        engineerInput.engineer_id,
+                        engineerInput.engineer_email,
+                        engineerInput.engineer_github
+                    );
+                    teamMembers,push(enginner);
+                    console.log(engineer);
+                    createTeam();
+                });
+            }  else if (data.team_role === 'Intern') {
+                return inquirer
+                .prompt(questions.internQuestions)
+                .then(function (internInput) {
+                    const intern = new Intern(
+                        internInput.intern_name,
+                        internInput.intern_id,
+                        internInput.intern_email,
+                        internInput.school
+                    );
+                    teamMembers.push(intern);
+                    console.log(intern);
+                    createTeam();
+                });
+            } else if (data.team_role === 'I do not want to add team member.')  {
+                console.log('New team has been created.');
+                const teamProfilePage = new Promise((resolve, reject) => {
+                    resolve(generateHTML(teamMembers));
+                });
+                teamProfilePage
+                .then((data) => {
+                    return fs.writeFile(data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
+        });
+    };
+
+    //still need to make corrections//
+
+    
                 internInput.intern_school
                );
                teamMembers.push(intern);
