@@ -59,8 +59,9 @@ const createTeam = async () => {
                );
                teamMembers.push(intern);
      });
-    } else (response.team_role === 'I do not want to add team member.') {
-
+    } else if (response.team_role === 'I do not want to add team member.') {
+            console.log('The new team has been created');
+            return;
     }
     });
 };
