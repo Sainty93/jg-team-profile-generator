@@ -1,30 +1,19 @@
-const Manager = require('.lib/manager.js');
-const Engineer = require('.lib/Enginner.js');
-const Intern = require('.lib/Intern.js');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Enginner');
+const Intern = require('.lib/Intern');
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
-const questions = require('./lib/questions.js');
-const generateHTML = require('./dist/generateHTML.js');
-inquirer.createPromptModule(questions);
-
-const generateHTML = require('./dist/generateHTML.js');
-const { isNumberObject } = require('util/types');
+const questions = require('./lib/questions');
+const generateHTML = require('./src/generateHTML');
 
 const teamMembers =[];
 
-generateHTML(teamMembers);
-fs.writeFileSync('index.html', generateHTML, (error) => {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log ('Your HTML file has been genrrated.');
-    }
-});
+const createManager = () => {
+    console.log('')
+   // return await inquirer
+   // .prompt({
 
-const createTeam = async () => {
+//const createTeam = async () => {
     return await inquirer
     .prompt([
         {
@@ -46,6 +35,7 @@ const createTeam = async () => {
                     enginnerInput.enginner_github
                 );
                 teamMembers.push(engineer);
+                console.log(enginner);
             });
     }  else if (response.team_role === 'Intern') {
             return await inquirer
