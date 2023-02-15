@@ -26,7 +26,7 @@ const createManager = () => {
 
         createTeam();
 
-        });
+        }));
 };
     const createTeam =() => {
         return inquirer
